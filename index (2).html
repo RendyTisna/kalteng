@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kerusakan dan Kerugian Karhutla Kalimantan Tengah 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E6E8E6;--surface:#F3F4F2;--ink:#2B2019;--mute:#6B6F6C;--line:#CBCFCB;--dmg:#C2411B;--loss:#3F6F78;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1714;--surface:#25211D;--ink:#EDE6DF;--mute:#A09A93;--line:#3A342E;--dmg:#E0643A;--loss:#6FA8B3}}
+:root[data-theme="dark"]{--bg:#1A1714;--surface:#25211D;--ink:#EDE6DF;--mute:#A09A93;--line:#3A342E;--dmg:#E0643A;--loss:#6FA8B3}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:clamp(26px,7vw,38px);line-height:1.08;font-weight:800;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--mute);font-size:14px;margin:0 0 20px}
+.tot{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.tot div{flex:1 1 140px}
+.tot b{display:block;font-size:24px;font-weight:800}
+.tot span{font-size:13px;color:var(--mute)}
+.strip{display:flex;height:64px;gap:2px;margin:6px 0 4px}
+.seg{border:0;padding:0;min-width:3px;cursor:pointer;transition:flex-grow .5s,opacity .2s;border-radius:3px}
+.seg.d{background:var(--dmg)}.seg.l{background:var(--loss)}
+.seg:focus-visible,.row:focus-visible,.tab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.dim .seg:not(.on){opacity:.28}
+.tabs{display:flex;gap:6px;margin:18px 0 12px}
+.tab{flex:1;padding:10px 6px;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.row{display:block;width:100%;text-align:left;background:var(--surface);border:1.5px solid transparent;border-radius:12px;padding:12px;margin-bottom:8px;color:inherit;font-family:inherit;cursor:pointer}
+.row.on{border-color:var(--ink)}
+.top{display:flex;justify-content:space-between;gap:12px;font-size:15px;font-weight:600}
+.top em{font-style:normal;white-space:nowrap}
+.track{height:10px;background:var(--line);border-radius:5px;margin-top:8px;overflow:hidden}
+.fill{height:100%;border-radius:5px;transition:width .5s}
+.d .fill,.fill.d{background:var(--dmg)}.fill.l{background:var(--loss)}
+.det{display:none;margin-top:10px;font-size:13.5px;color:var(--mute)}
+.row.on .det{display:block}
+.det strong{color:var(--ink)}
+.note{font-size:12px;color:var(--mute);margin-top:18px}
+.key{display:flex;gap:14px;font-size:13px;color:var(--mute);margin-top:6px}
+.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>Karhutla Kalimantan Tengah menelan Rp20,43 triliun</h1>
+<p class="sub">Valuasi kerusakan dan kerugian, 1 Januari sampai 18 Oktober 2026 (update 18 Oktober 2026)</p>
+<div class="tot">
+<div><b style="color:var(--dmg)">Rp15,54 T</b><span>Kerusakan langsung</span></div>
+<div><b style="color:var(--loss)">Rp4,89 T</b><span>Kerugian tidak langsung</span></div>
+</div>
+<div id="strip" class="strip" role="group" aria-label="Proporsi setiap komponen"></div>
+<div class="key"><span><i style="background:var(--dmg)"></i>Kerusakan</span><span><i style="background:var(--loss)"></i>Kerugian</span></div>
+<div class="tabs" id="tabs">
+<button class="tab" data-f="all" aria-pressed="true">Semua</button>
+<button class="tab" data-f="d" aria-pressed="false">Kerusakan</button>
+<button class="tab" data-f="l" aria-pressed="false">Kerugian</button>
+</div>
+<div id="list"></div>
+<p class="note">Ketuk bagian bilah atau baris untuk melihat rincian. Sumber: Laporan Valuasi DaLA dan Jitupasna Kalimantan Tengah, 18 Oktober 2026.</p>
+</main>
+<script>
+var items=[
+{g:'d',n:'Kehancuran Perkebunan dan Hutan',v:3251000},
+{g:'d',n:'Kerusakan Hidrologis Lahan Gambut',v:1562700},
+{g:'d',n:'Kehancuran Keanekaragaman Hayati',v:10726300},
+{g:'l',n:'Beban Perawatan Medis Aktif (ISPA)',v:1220000},
+{g:'l',n:'Kelumpuhan Sektor Pariwisata',v:310000},
+{g:'l',n:'Biaya Taktis Operasional Pemadaman',v:680000},
+{g:'l',n:'Disrupsi Transportasi dan Logistik',v:240000},
+{g:'l',n:'Sunk-Cost Sektor Pendidikan',v:410000},
+{g:'l',n:'Emisi Karbon Lahan Gambut',v:1663820},
+{g:'l',n:'Emisi Karbon Lahan Mineral',v:366180}];
+var TOTAL=items.reduce(function(a,b){return a+b.v},0);
+var GT={d:0,l:0};items.forEach(function(i){GT[i.g]+=i.v});
+var sorted=items.slice().sort(function(a,b){return b.v-a.v});
+sorted.forEach(function(i,k){i.rank=k+1});
+var filter='all',sel=null;
+var nf=new Intl.NumberFormat('id-ID');
+function T(v){return 'Rp'+(v/1e6).toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2})+' T'}
+function P(x){return (x*100).toLocaleString('id-ID',{minimumFractionDigits:1,maximumFractionDigits:1})+'%'}
+function rp(v){return 'Rp'+nf.format(v*1e6)}
+function vis(){return sorted.filter(function(i){return filter==='all'||i.g===filter})}
+function render(){
+ var v=vis(),max=v[0].v;
+ var s=document.getElementById('strip');
+ s.className='strip'+(sel?' dim':'');
+ s.innerHTML=v.map(function(i){return '<button class="seg '+i.g+(sel===i.n?' on':'')+'" style="flex:'+i.v+' 1 0" data-n="'+i.n+'" aria-label="'+i.n+', '+T(i.v)+'"></button>'}).join('');
+ document.getElementById('list').innerHTML=v.map(function(i){
+  var on=sel===i.n;
+  return '<button class="row '+(on?'on':'')+'" data-n="'+i.n+'" aria-expanded="'+on+'"><div class="top"><span>'+i.n+'</span><em>'+T(i.v)+'</em></div><div class="track"><div class="fill '+i.g+'" style="width:'+(i.v/max*100)+'%"></div></div><div class="det"><strong>'+rp(i.v)+'</strong><br>'+P(i.v/TOTAL)+' dari total, '+P(i.v/GT[i.g])+' dari '+(i.g==='d'?'kerusakan langsung':'kerugian tidak langsung')+'. Peringkat '+i.rank+' dari 10 komponen.</div></button>'}).join('');
+}
+function pick(n){sel=(sel===n)?null:n;render();var r=document.querySelector('.row.on');if(r&&sel)r.scrollIntoView({block:'nearest',behavior:'smooth'})}
+document.addEventListener('click',function(e){
+ var t=e.target.closest('[data-n]');if(t){pick(t.getAttribute('data-n'));return}
+ var f=e.target.closest('.tab');if(f){filter=f.getAttribute('data-f');sel=null;
+  document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-pressed',b===f)});render()}
+});
+render();
+</script>
+</body>
+</html>
